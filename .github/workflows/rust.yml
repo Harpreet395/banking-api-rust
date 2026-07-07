@@ -6,18 +6,22 @@ on:
       - main
 
 jobs:
-  hello:
+  build:
+
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Print Current Directory
-        run: pwd
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
 
-      - name: List Files
-        run: ls -la
+      - name: Check Rust Version
+        run: rustc --version
 
-      - name: Print Hello
-        run: echo "Hello from GitHub Actions"
+      - name: Check Cargo Version
+        run: cargo --version
+
+      - name: Build Project
+        run: cargo build
