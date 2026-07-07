@@ -40,3 +40,6 @@ jobs:
 
       - name: Build Release Binary
         run: cargo build --release
+        with:
+        name: banking-api-rust
+        path: target/release/banking-api-rust
