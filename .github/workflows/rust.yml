@@ -11,35 +11,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    - name: Checkout Repository
+      uses: actions/checkout@v4
 
-      - name: Cache Cargo Dependencies
-        uses: Swatinem/rust-cache@v2
+    - name: Cache Cargo Dependencies
+      uses: Swatinem/rust-cache@v2
 
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@stable
 
-      - name: Check Rust Version
-        run: rustc --version
+    - name: Build Project
+      run: cargo build
 
-      - name: Check Cargo Version
-        run: cargo --version
+    - name: Check Formatting
+      run: cargo fmt --check
 
-      - name: Build Project
-        run: cargo build
+    - name: Run Clippy
+      run: cargo clippy -- -D warnings
 
-      - name: Check Formatting
-        run: cargo fmt --check
+    - name: Run Tests
+      run: cargo test
 
-      - name: Run Clippy
-        run: cargo clippy -- -D warnings
+    - name: Build Release Binary
+      run: cargo build --release
 
-      - name: Run Tests
-        run: cargo test
-
-      - name: Build Release Binary
-        run: cargo build --release
-        with:
-        name: banking-api-rust
-        path: target/release/banking-api-rust
+    - name: Upload Release Binary
+      uses: actions/upload-artifact@v4
+      with:
+      name: banking-api-rust
+      path: target/release/banking-api-rust
