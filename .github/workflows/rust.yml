@@ -38,5 +38,5 @@ jobs:
     - name: Upload Release Binary
       uses: actions/upload-artifact@v4
       with:
-      name: banking-api-rust
-      path: target/release/banking-api-rust
+        name: banking-api-rust
+        path: target/release/banking-api-rust
