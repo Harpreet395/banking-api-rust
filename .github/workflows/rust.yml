@@ -10,5 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Print Current Directory
+        run: pwd
+
+      - name: List Files
+        run: ls -la
+
       - name: Print Hello
         run: echo "Hello from GitHub Actions"
